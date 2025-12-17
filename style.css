@@ -850,15 +850,29 @@ nav a:hover {
         flex-direction: column;
     }
     
-    /* Адаптация Flip Card на мобильных */
+    * Адаптация Flip Card на мобильных — ИСПРАВЛЕННЫЙ БЛОК */
     .flip-container {
-        width: 90%; 
-        max-width: 350px;
-        height: 500px; /* Уменьшаем высоту для мобильных */
+        width: 100%; 
+        max-width: 400px;
+        height: 850px; /* Увеличили высоту, чтобы всё влезло */
     }
     
     .main-house-image {
-        height: 150px; /* Уменьшаем основное фото */
+        height: 200px; /* Немного увеличили фото для четкости */
+    }
+
+    /* Добавляем, чтобы тексты не слипались */
+    .front, .back {
+        justify-content: flex-start; 
+        padding: 20px;
+    }
+
+    .features-list {
+        margin-bottom: 20px; /* Даем место списку */
+    }
+
+    .price-tag {
+        margin-top: 10px;
     }
     
     .plan-image {
