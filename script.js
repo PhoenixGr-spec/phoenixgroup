@@ -86,40 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
             lightbox.classList.remove('open');
         }
     });
-
-    // ===================================================
-    // === 4. Логика Обработки Формы (ЗАГЛУШКА) ===
-    // ===================================================
-    const contactForm = document.getElementById('contactForm');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            
-            // Получаем данные
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-
-            console.log(`Заявка получена от: ${name}, Телефон: ${phone}, Сообщение: ${message}`);
-
-            // 1. Отображаем сообщение об успехе
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            submitButton.textContent = 'Спасибо! Заявка отправлена!';
-            submitButton.style.backgroundColor = '#4CAF50'; // Зеленый цвет успеха
-            submitButton.disabled = true;
-
-            // 2. Очищаем форму
-            contactForm.reset(); 
-
-            // 3. Отменяем изменения через 3 секунды
-            setTimeout(() => {
-                submitButton.textContent = 'Отправить заявку';
-                submitButton.style.backgroundColor = '#00897b'; // Возвращаем исходный цвет
-                submitButton.disabled = false;
-            }, 3000);
-        });
-    }
     
     // ===================================================
     // === 5. Логика Анимации при Скролле (Scroll Reveal) ===
