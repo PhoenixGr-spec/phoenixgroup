@@ -1,54 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // ===================================================
     // === 1. Логика 3D-переворота карточек ===
-    // ===================================================
     const flipButtons = document.querySelectorAll('.flip-btn');
-
     flipButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault(); 
             e.stopPropagation(); 
-
             const flipContainer = button.closest('.flip-container');
-            
             if (flipContainer) {
                 flipContainer.classList.toggle('flipped');
             }
         });
     });
 
-    // ===================================================
     // === 2. Логика Галереи Миниатюр ===
-    // ===================================================
     const thumbnailGalleries = document.querySelectorAll('.thumbnail-gallery');
-
     thumbnailGalleries.forEach(gallery => {
         const thumbnails = gallery.querySelectorAll('.thumbnail');
-        
         thumbnails.forEach(thumb => {
             thumb.addEventListener('click', (e) => {
-                
                 const clickedThumb = e.target;
                 const flipContainer = clickedThumb.closest('.flip-container');
                 const mainImage = flipContainer.querySelector('.main-house-image');
-                
                 if (mainImage) {
                     mainImage.src = clickedThumb.dataset.fullSrc; 
                     mainImage.dataset.caption = clickedThumb.dataset.caption;
-
                     thumbnails.forEach(t => t.classList.remove('active'));
                     clickedThumb.classList.add('active');
                 }
-                
                 e.stopPropagation(); 
             });
         });
     });
     
-    // ===================================================
     // === 3. Логика Модального окна (Lightbox) ===
-    // ===================================================
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
@@ -71,47 +56,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    closeBtn.addEventListener('click', () => {
-        lightbox.classList.remove('open');
-    });
-
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
             lightbox.classList.remove('open');
-        }
-    });
+        });
+    }
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('open')) {
-            lightbox.classList.remove('open');
-        }
-    });
-    
-    // ===================================================
-    // === 5. Логика Анимации при Скролле (Scroll Reveal) ===
-    // ===================================================
-    
+    // === 4. Логика Анимации при Скролле ===
     const revealElements = document.querySelectorAll('.scroll-reveal');
-
-    const observerOptions = {
-        root: null, 
-        rootMargin: '0px',
-        threshold: 0.2 // Порог видимости 20%
-    };
-
     const scrollObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Если элемент вошел в зону видимости
                 entry.target.classList.add('visible');
-                // Прекращаем наблюдение
                 observer.unobserve(entry.target); 
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.2 });
 
-    revealElements.forEach(el => {
-        scrollObserver.observe(el);
-    });
+    revealElements.forEach(el => scrollObserver.observe(el));
+
+    // === 5. ОТПРАВКА В TELEGRAM (Добавлено сюда для порядка) ===
+    const form = document.getElementById('contactForm');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const token = '8538881535:AAG-2Q2ONQ6ozFdfmSk-DbWvbFSIDuHc7qE';
+            const chatId = '6765147268'; 
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            const text = `🚀 *Новая заявка!*\n\n👤 *Имя:* ${name}\n📞 *Тел:* ${phone}\n💬 *Сообщение:* ${message}`;
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: text,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Заявка успешно отправлена!');
+                    form.reset();
+                } else {
+                    alert('Ошибка при отправке.');
+                }
+            })
+            .catch(err => console.error('Ошибка:', err));
+        });
+    }
 
 }); // Конец document.addEventListener
