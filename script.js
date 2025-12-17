@@ -39,30 +39,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxCaption = document.getElementById('lightbox-caption');
     const closeBtn = document.querySelector('.lightbox-close');
     
-    document.body.addEventListener('click', (e) => {
-        if (e.target && e.target.matches('.zoomable')) {
-            const img = e.target;
-            lightbox.classList.add('open');
-            lightboxImg.src = img.src;
-            lightboxCaption.innerHTML = img.dataset.caption || img.alt;
-            
-            if (img.classList.contains('plan-image')) {
-                 lightboxImg.style.objectFit = 'contain';
-                 lightboxImg.style.backgroundColor = '#222'; 
-            } else {
-                 lightboxImg.style.objectFit = 'cover';
-                 lightboxImg.style.backgroundColor = 'transparent';
+    if (lightbox) {
+        document.body.addEventListener('click', (e) => {
+            if (e.target && e.target.matches('.zoomable')) {
+                const img = e.target;
+                lightbox.classList.add('open');
+                lightboxImg.src = img.src;
+                lightboxCaption.innerHTML = img.dataset.caption || img.alt;
+                
+                if (img.classList.contains('plan-image')) {
+                     lightboxImg.style.objectFit = 'contain';
+                     lightboxImg.style.backgroundColor = '#222'; 
+                } else {
+                     lightboxImg.style.objectFit = 'cover';
+                     lightboxImg.style.backgroundColor = 'transparent';
+                }
             }
-        }
-    });
-
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            lightbox.classList.remove('open');
         });
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                lightbox.classList.remove('open');
+            });
+        }
     }
 
-    // === 4. Логика Анимации при Скролле ===
+    // === 4. Анимация при Скролле ===
     const revealElements = document.querySelectorAll('.scroll-reveal');
     const scrollObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -75,11 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => scrollObserver.observe(el));
 
-    // === 5. ОТПРАВКА В TELEGRAM (Добавлено сюда для порядка) ===
+    // === 5. ОТПРАВКА В TELEGRAM (ПРОВЕРЕННЫЙ КОД) ===
     const form = document.getElementById('contactForm');
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+
+            // Токен строго по твоему скриншоту
             const token = '8538881535:AAG-2Q2ONQ6ozFdfmSk-DbWvbFSIDuHc7qE';
             const chatId = '6765147268'; 
 
@@ -87,9 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const phone = document.getElementById('phone').value;
             const message = document.getElementById('message').value;
 
-            const text = `🚀 *Новая заявка!*\n\n👤 *Имя:* ${name}\n📞 *Тел:* ${phone}\n💬 *Сообщение:* ${message}`;
+            const text = `🚀 *Новая заявка с сайта!*\n\n👤 *Имя:* ${name}\n📞 *Телефон:* ${phone}\n💬 *Сообщение:* ${message}`;
 
-            fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+            const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+            fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -103,11 +109,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Заявка успешно отправлена!');
                     form.reset();
                 } else {
-                    alert('Ошибка при отправке.');
+                    // Если всё еще 401, выведем подробности в консоль
+                    console.error('Ошибка Telegram API:', response.status);
+                    alert('Ошибка сервера (401). Проверьте токен.');
                 }
             })
-            .catch(err => console.error('Ошибка:', err));
+            .catch(err => {
+                console.error('Ошибка сети:', err);
+                alert('Ошибка отправки. Проверьте соединение.');
+            });
         });
     }
 
-}); // Конец document.addEventListener
+});
