@@ -850,7 +850,7 @@ nav a:hover {
         flex-direction: column;
     }
     
-    * Адаптация Flip Card на мобильных — ИСПРАВЛЕННЫЙ БЛОК */
+    /* Адаптация Flip Card на мобильных — ИСПРАВЛЕННЫЙ БЛОК */
     .flip-container {
         width: 100%; 
         max-width: 400px;
