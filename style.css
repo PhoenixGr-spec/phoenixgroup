@@ -560,15 +560,21 @@ nav a:hover {
 .step-icon {
     width: 60px;
     height: 60px;
-    line-height: 60px;
     margin: 0 auto 15px;
-    background-color: #1e5a8c; /* Фирменный синий */
+    background-color: #1e5a8c; /* Твой фирменный синий */
     color: white;
     border-radius: 50%;
     font-size: 1.8em;
     font-weight: 900;
-    border: 5px solid white; /* Добавляем белый ободок для контраста с линией */
+    border: 5px solid white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+    /* ИСПРАВЛЕНИЕ ЦЕНТРИРОВКИ ЦИФРЫ: */
+    display: flex;                /* Включаем гибкий контейнер */
+    align-items: center;          /* Центрируем по вертикали */
+    justify-content: center;      /* Центрируем по горизонтали */
+    line-height: 1;               /* Сбрасываем старую высоту строки */
+    padding: 0;                   /* Убираем лишние отступы */
 }
 
 .step-item h3 {
@@ -600,14 +606,18 @@ nav a:hover {
     }
     
     .step-icon {
-        flex-shrink: 0; /* Чтобы иконка не сжималась */
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        font-size: 1.5em;
+        flex-shrink: 0; 
+        width: 45px;      /* Немного увеличим для удобства */
+        height: 45px;
+        font-size: 1.4em;
         margin: 0;
+
+        /* Дублируем центровку для мобильных */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
     }
-}
 
 /* =================================================== */
 /* 7. Contacts and Footer (ОБНОВЛЕНО: Добавлена форма) */
