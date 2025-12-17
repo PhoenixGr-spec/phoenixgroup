@@ -428,31 +428,36 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Собираем данные из полей
-            const formData = {
-                name: this.querySelector('#name').value,
-                phone: this.querySelector('#phone').value,
-                message: this.querySelector('#message').value
-            };
+            // Вставь сюда НОВЫЙ токен, если перевыпустил, строго внутри кавычек
+            const rawToken = "8538881535:AAG-2Q2ONQ6ozFdfmSk-DbWvbFSIduHc7qE";
+            const token = rawToken.trim(); // Убираем случайные пробелы
+            const chat_id = "6765147268"; 
 
-            // Отправляем данные на твой серверный скрипт
-            fetch('send.php', {
+            const name = this.querySelector('input[type="text"]').value;
+            const phone = this.querySelector('input[type="tel"]').value;
+            const message = this.querySelector('textarea').value;
+
+            const text = `🚀 Новая заявка!\n👤 Имя: ${name}\n📞 Тел: ${phone}\n💬 Сообщение: ${message}`;
+            const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+            // Используем метод POST - это надежнее
+            fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({
+                    chat_id: chat_id,
+                    text: text
+                })
             })
             .then(response => {
                 if (response.ok) {
-                    alert('Заявка успешно отправлена!');
+                    alert('Заявка отправлена!');
                     this.reset();
                 } else {
-                    alert('Ошибка при отправке. Попробуйте связаться с нами напрямую.');
+                    alert('Ошибка 401: Токен не подошел. Проверьте Token в коде.');
                 }
             })
-            .catch(err => {
-                console.error('Ошибка:', err);
-                alert('Ошибка сети. Проверьте интернет-соединение.');
-            });
+            .catch(err => alert('Ошибка сети'Проверьте соединение.));
         });
     }
 });
