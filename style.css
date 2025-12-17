@@ -1,0 +1,888 @@
+/* =================================================== */
+/* 1. Глобальные Стили и Шрифты */
+/* =================================================== */
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+    background-color: white; 
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+h1, h2, h3 {
+    font-weight: 900; 
+    color: #004d40; /* Темно-зеленый */
+}
+
+/* Кнопки по умолчанию */
+.btn {
+    display: inline-block;
+    background-color: #00897b; 
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #004d40; 
+}
+
+.btn-small {
+    padding: 8px 18px;
+    background-color: #66bb6a;
+    font-size: 0.9em;
+    text-transform: none;
+    border-radius: 5px;
+}
+
+/* =================================================== */
+/* 2. Header (Шапка и Название Компании) */
+/* =================================================== */
+
+header {
+    background: #f4f4f4;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex; 
+    align-items: center; 
+}
+
+.logo img {
+    height: 110px; /* Размер логотипа */
+    vertical-align: middle;
+}
+
+/* Стили для "Феникс груп" (Ваш фирменный цвет #1e5a8c) */
+.company-name {
+    font-size: 1.8em; 
+    font-weight: 900; 
+    letter-spacing: 1px; 
+    text-transform: uppercase; 
+    color: #1e5a8c; /* Ваш сохраненный темно-синий цвет */
+    text-shadow: 
+        1px 1px 0 #0f3755, 
+        2px 2px 5px rgba(0, 0, 0, 0.2); 
+    margin: 0;
+    padding-left: 10px; 
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 25px;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #00897b;
+}
+
+/* =================================================== */
+/* 3. Hero Section (Геометрическая Шапка) */
+/* =================================================== */
+
+.hero {
+    background: linear-gradient(135deg, #00897b 0%, #004d40 100%); 
+    color: white;
+    padding: 120px 0; 
+    text-align: center;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    position: relative; 
+    overflow: hidden; 
+    z-index: 1; 
+}
+
+/* Декоративные элементы */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.1); 
+    transform: rotate(45deg) translate(100px, -50px);
+    z-index: 0; 
+    border-radius: 20px; 
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.1); 
+    transform: rotate(-30deg) translate(-50px, 50px);
+    z-index: 0;
+    border-radius: 50%; 
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2; 
+}
+
+.hero h1 {
+    color: white;
+    font-size: 3.5em; 
+    font-weight: 900; 
+    margin-bottom: 15px;
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6); 
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.hero p:last-of-type {
+    margin-top: 20px;
+    font-size: 1em;
+    opacity: 0.8;
+    margin-bottom: 0;
+}
+
+/* =================================================== */
+/* 4. About Section */
+/* =================================================== */
+
+.about {
+    padding: 60px 0;
+    background-color: #fcfcfc; 
+}
+
+.about h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.about-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-text {
+    flex: 2; 
+}
+
+.about-image {
+    flex: 1; 
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quality-list {
+    list-style: none; 
+    padding: 0;
+    margin-top: 20px;
+}
+
+.quality-list li {
+    padding: 10px 0;
+    border-bottom: 1px dashed #e0e0e0; 
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #444;
+}
+
+.quality-list li strong {
+    font-weight: 700;
+    color: #1e5a8c; 
+}
+
+/* =================================================== */
+/* 5. Catalog Section (3D FLIP CARD СТИЛИ) */
+/* =================================================== */
+
+.catalog {
+    padding: 60px 0; 
+    background: #f8f8f8; 
+    text-align: center;
+}
+
+.catalog h2 {
+    margin-bottom: 40px;
+}
+
+.house-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px; /* Интервал между карточками */
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* ---------------------------------------------------- */
+/* 5.1. Основа FLIP CARD */
+/* ---------------------------------------------------- */
+
+.flip-container {
+    perspective: 1000px; /* Глубина 3D-эффекта */
+    width: 400px; /* Ширина карточки */
+    height: 830px; /* Фиксированная высота */
+    cursor: pointer;
+    border-radius: 15px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease;
+}
+
+.flip-container:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.flipper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s; /* Время анимации переворота */
+    transform-style: preserve-3d;
+}
+
+/* Состояние "перевернуто" */
+.flip-container.flipped .flipper {
+    transform: rotateY(180deg);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Скрывает обратную сторону */
+    border-radius: 15px;
+    background: white;
+    padding: 25px; 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    overflow: hidden; 
+}
+
+/* ---------------------------------------------------- */
+/* 5.2. Стили ЛИЦЕВОЙ стороны */
+/* ---------------------------------------------------- */
+
+.front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.main-house-image {
+    width: 100%;
+    height: 250px; 
+    object-fit: cover; 
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: opacity 0.3s ease;
+}
+
+/* ---------------------------------------------------- */
+/* 5.3. Стили Галереи Миниатюр */
+/* ---------------------------------------------------- */
+
+.thumbnail-gallery {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px; /* Расстояние между миниатюрами */
+    margin-bottom: 20px;
+}
+
+.thumbnail {
+    width: 23%; /* 4 миниатюры с учетом gap */
+    height: 60px; /* Фиксированная высота миниатюры */
+    object-fit: cover;
+    border-radius: 5px;
+    opacity: 0.7;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: opacity 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.thumbnail:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.thumbnail.active {
+    opacity: 1;
+    border-color: #00897b; /* Активная миниатюра выделена цветом */
+    transform: none;
+}
+
+/* ---------------------------------------------------- */
+/* 5.4. Стили текстового контента и кнопок */
+/* ---------------------------------------------------- */
+
+.front h3 {
+    color: #1e5a8c; 
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 1px;
+}
+
+.front p {
+    font-size: 0.8em;
+    color: #555;
+    margin-bottom: 0px;
+    flex-grow: 1;
+}
+
+.features-list {
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.8em;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.features-list li {
+    margin-bottom: 5px;
+}
+
+/* Кнопка "Посмотреть планировку" */
+.btn-large-presentational {
+    margin-top: auto; /* Прижимаем кнопку к низу */
+    display: block; 
+    width: 100%;
+    background-color: #1e5a8c; 
+    color: white;
+    padding: 12px 15px;
+    border-radius: 8px; 
+    font-size: 1em;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    border: none;
+}
+
+.btn-large-presentational:hover {
+    background-color: #0f3755; 
+}
+
+
+/* ---------------------------------------------------- */
+/* 5.5. Стили ОБРАТНОЙ стороны (План) */
+/* ---------------------------------------------------- */
+
+.back {
+    transform: rotateY(180deg);
+    background-color: #f8f8f8;
+    display: flex; /* Обеспечивает Flexbox для back */
+    flex-direction: column; /* Элементы идут сверху вниз */
+}
+
+.plan-image {
+    width: 100%;
+    /* Используем flex-grow для занятия доступного пространства */
+    flex-grow: 1; 
+    max-height: 45%; /* Ограничение роста, чтобы оставить место для текста и кнопки */
+    object-fit: contain; /* ВАЖНО: чтобы план не обрезался и сохранял пропорции */
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: zoom-in;
+}
+
+.plan-details {
+    /* flex-grow: 1; - Убран, т.к. flex-grow теперь у .plan-image */
+    margin-bottom: 15px;
+}
+
+.plan-details h3 {
+    color: #00897b;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Кнопка "Скрыть планировку" (красная) */
+.close-plan-btn {
+    margin-top: auto; 
+    display: block; 
+    width: 100%;
+    background-color: #dc3545; /* Красный цвет для контраста */
+    color: white;
+    padding: 12px 15px;
+    border-radius: 8px; 
+    font-size: 1em;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    border: none;
+}
+
+.close-plan-btn:hover {
+    background-color: #c82333;
+}
+/* ---------------------------------------------------- */
+/* 5.6. Стили Блока Цены (Обновлено) */
+/* ---------------------------------------------------- */
+
+.price-tag {
+    margin-top: 15px; /* Отступ от кнопки */
+    padding: 8px 12px;
+    background-color: #fcfcfc; /* Светло-серый фон */
+    color: #444;
+    border: 2px solid #ffb74d; /* Оранжевая рамка */
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+    margin-bottom: 0; 
+}
+
+.price-tag span {
+    display: block; /* Цена на отдельной строке */
+    font-size: 1.6em;
+    font-weight: 900;
+    color: #ffe0b2; /* Светло-золотой цвет для акцента */
+    line-height: 1.2;
+}
+/* =================================================== */
+/* 6. Advantages Section */
+/* =================================================== */
+
+.advantages {
+    background: #e0f2f1; 
+    padding: 50px 0;
+    text-align: center;
+}
+
+.adv-list {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.adv-list div {
+    flex: 1;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.adv-list h3 {
+    color: #00897b;
+}
+/* =================================================== */
+/* 6.5. Process Section (Процесс работы) */
+/* =================================================== */
+
+.process-section {
+    padding: 80px 0;
+    background-color: white;
+    text-align: center;
+}
+
+.process-subtitle {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 50px;
+}
+
+.process-steps {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative;
+}
+
+/* Линия-соединитель */
+.process-steps::before {
+    content: '';
+    position: absolute;
+    top: 50px; /* Вертикальное положение линии */
+    left: 5%;
+    right: 5%;
+    height: 4px;
+    background-color: #00897b; /* Фирменный зеленый */
+    z-index: 0;
+    display: none; /* Скрываем по умолчанию, пока не настроим адаптивность */
+}
+
+
+.step-item {
+    flex: 1;
+    position: relative;
+    padding: 20px 10px;
+    text-align: center;
+    background: #fcfcfc;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    margin: 0 auto 15px;
+    background-color: #1e5a8c; /* Фирменный синий */
+    color: white;
+    border-radius: 50%;
+    font-size: 1.8em;
+    font-weight: 900;
+    border: 5px solid white; /* Добавляем белый ободок для контраста с линией */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.step-item h3 {
+    color: #004d40; /* Темно-зеленый */
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/* Адаптивность для Process Section */
+@media (min-width: 900px) {
+    /* Показываем линию-соединитель только на десктопе */
+    .process-steps::before {
+        display: block; 
+    }
+}
+
+@media (max-width: 900px) {
+    /* На планшетах и мобильных перестраиваем в колонку */
+    .process-steps {
+        flex-direction: column;
+    }
+    
+    .step-item {
+        margin-bottom: 20px;
+        text-align: left;
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    
+    .step-icon {
+        flex-shrink: 0; /* Чтобы иконка не сжималась */
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.5em;
+        margin: 0;
+    }
+}
+
+/* =================================================== */
+/* 7. Contacts and Footer (ОБНОВЛЕНО: Добавлена форма) */
+/* =================================================== */
+
+.contacts {
+    padding: 60px 0;
+    text-align: center;
+    background-color: #e8f5e9; /* Очень светлый зеленый фон */
+}
+
+.contacts h2 {
+    margin-bottom: 10px;
+}
+
+.contacts-subtitle {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.contacts-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    text-align: left;
+}
+
+.contact-info {
+    flex: 1;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.contact-info h3 {
+    color: #00897b;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.contact-info address p {
+    font-style: normal;
+    margin-bottom: 15px;
+    font-size: 1.05em;
+    line-height: 1.4;
+}
+
+.contact-info address a {
+    color: #1e5a8c;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+.contact-info address a:hover {
+    color: #0f3755;
+}
+
+.working-hours {
+    margin-top: 30px;
+    font-weight: 700;
+    color: #444;
+    border-top: 1px dashed #ccc;
+    padding-top: 15px;
+}
+
+/* Стили для формы */
+.contact-form-wrapper {
+    flex: 1.2; 
+    padding: 30px;
+    background: #fcfcfc;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form-wrapper h3 {
+    color: #1e5a8c;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: #333;
+    font-size: 0.95em;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+    font-family: inherit;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #00897b;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 137, 123, 0.3);
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.policy-note {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 15px;
+}
+
+.policy-note a {
+    color: #00897b;
+    text-decoration: none;
+}
+
+/* Адаптивность для формы */
+@media (max-width: 900px) {
+    .contacts-grid {
+        flex-direction: column;
+    }
+    .contact-form-wrapper,
+    .contact-info {
+        flex: auto;
+        padding: 20px;
+    }
+}
+
+/* =================================================== */
+/* 8. Стили Модального окна (Lightbox) */
+/* =================================================== */
+
+.lightbox {
+    display: none; 
+    position: fixed; 
+    z-index: 9999; 
+    padding-top: 60px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.9); 
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.open {
+    display: block;
+    opacity: 1;
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 900px;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+    border-radius: 8px;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.lightbox-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 900px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* =================================================== */
+/* 9. Адаптивность (Для мобильных устройств) */
+/* =================================================== */
+
+@media (max-width: 768px) {
+    
+    header .container {
+        flex-direction: column;
+    }
+    nav {
+        margin-top: 10px;
+    }
+    nav a {
+        margin: 0 8px;
+        font-size: 0.9em;
+    }
+    
+    .hero h1 {
+        font-size: 2.5em;
+    }
+    .hero {
+        padding: 80px 0;
+        min-height: 350px;
+    }
+    
+    .adv-list {
+        flex-direction: column;
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+    
+    /* Адаптация Flip Card на мобильных */
+    .flip-container {
+        width: 90%; 
+        max-width: 350px;
+        height: 500px; /* Уменьшаем высоту для мобильных */
+    }
+    
+    .main-house-image {
+        height: 150px; /* Уменьшаем основное фото */
+    }
+    
+    .plan-image {
+        height: 200px;
+    }
+    
+    .thumbnail {
+         height: 40px; /* Уменьшаем миниатюры на мобильных */
+    }
+}
+
+/* =================================================== */
+/* 10. Стили Scroll Reveal Animation (НОВЫЙ БЛОК) */
+/* =================================================== */
+
+/* Начальное состояние: невидимое и немного смещено вниз */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Состояние после скролла: полностью видимое, в нормальном положении */
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
