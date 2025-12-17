@@ -606,18 +606,14 @@ nav a:hover {
     }
     
     .step-icon {
-        flex-shrink: 0; 
-        width: 45px;      /* Немного увеличим для удобства */
-        height: 45px;
-        font-size: 1.4em;
+        flex-shrink: 0; /* Чтобы иконка не сжималась */
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.5em;
         margin: 0;
-
-        /* Дублируем центровку для мобильных */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1;
     }
+}
 
 /* =================================================== */
 /* 7. Contacts and Footer (ОБНОВЛЕНО: Добавлена форма) */
