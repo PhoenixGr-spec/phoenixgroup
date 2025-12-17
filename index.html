@@ -420,6 +420,42 @@
     </div>
 
     <script src="script.js"></script> 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const botToken = '8538881535:AAG-2Q2ONQ6ozFdfmSk-DbWvbFSIDuHc7qE';
+                const chatID = '6765147268';
 
+                const nameValue = document.getElementById('name').value;
+                const phoneValue = document.getElementById('phone').value;
+                const messageValue = document.getElementById('message').value;
+
+                const fullText = `🚀 Новая заявка!\n\nИмя: ${nameValue}\nТелефон: ${phoneValue}\nСообщение: ${messageValue}`;
+
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: chatID,
+                        text: fullText
+                    })
+                })
+                .then(res => {
+                    if (res.ok) {
+                        alert('Успешно отправлено!');
+                        contactForm.reset();
+                    } else {
+                        alert('Ошибка отправки!');
+                    }
+                })
+                .catch(err => alert('Ошибка сети!'));
+            });
+        }
+    });
+    </script>
 </body>
 </html>
